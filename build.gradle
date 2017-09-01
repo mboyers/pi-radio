@@ -1,0 +1,54 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'codenarc'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-mail")
+    compile("org.springframework:spring-web")
+    compile("org.springframework:spring-webmvc")
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile("com.fasterxml.jackson.core:jackson-databind")
+	compile("org.codehaus.groovy:groovy")
+    compile 'com.pi4j:pi4j-core:1.1'
+    compile 'net.thejavashop:javampd:5.0.3'
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile "org.gmock:gmock:0.8.3"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+
+bootRun {
+    systemProperties = [
+            'spring.profiles.active': System.getProperty('spring.profiles.active') ?: 'test'
+    ] + System.properties
+}
+
+springBoot {
+    executable = true
+}
