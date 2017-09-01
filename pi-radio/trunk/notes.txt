@@ -1,0 +1,63 @@
+Here's the chip: https://www.adafruit.com/product/856
+Here's the sample code I copied for this solution: http://www.lediouris.net/RaspberryPI/ADC/readme.html
+Here's some sample code that I couldn't get to work: https://github.com/Pi4J/pi4j/blob/master/pi4j-example/src/main/java/MCP3008GpioExample.java
+
+Had to run "sudo raspi-config", then go to "Advanced", then "Enable SPI" to use pi4j gpio extensions, otherwise
+I was getting the following message:
+  Unable to open SPI device: No such file or directory
+However, note that this was for the above example that I never got working.  With the code that actually works, this wasn't necessary.
+
+To build and deploy:
+./gradlew clean assemble
+scp build/libs/pi-radio.jar pi@192.168.1.125:
+
+To run in production mode or test mode:
+sudo java -jar pi-radio.jar --spring.profiles.active=prod
+sudo java -jar pi-radio.jar --spring.profiles.active=test
+
+Here's the nginx configuration I used to proxy-pass radionomy traffic.
+
+#
+# At some point in 2017, radionomy blocked mpd, but still allowed Winamp (since they own it now).
+# Turns out they were just looking at the User-Agent header, so this proxy changes the header
+# to use Winamp's and radionomy allows it.
+#
+server {
+    listen 80;
+    # The following is needed due to the parameters in the proxy_pass directive, it's Google's DNS resolver
+    resolver 8.8.8.8;
+    location / {
+        proxy_pass http://streaming.radionomy.com$request_uri;
+        proxy_set_header "User-Agent" "WinampMPEG/5.66, Ultravox/2.1";
+        proxy_connect_timeout 60;
+        proxy_send_timeout 60;
+        proxy_read_timeout 60;
+    }
+}
+
+
+PI SETUP:
+-Change Password-
+passwd
+
+-Set Time Zone-
+sudo raspi-config
+
+-Configured Wireless-
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+network={
+    ssid="psosbnet-g"
+    psk="snip"
+}
+
+sudo ip addr show
+
+-Enable SSH-
+cd /boot
+sudo vi ssh (save empty file)
+
+-Install Packages-
+sudo apt-get update && sudo apt-get install oracle-java8-jdk
+
+For static wireless ip, I used the router instead, giving it the mac address of the pi, this was under "advanced" tab, choose "setup", then "lan setup"
+Here's the ip I reserved and the mac address of the pi: 192.168.1.130	sump-monitor	B8:27:EB:C4:D0:66
