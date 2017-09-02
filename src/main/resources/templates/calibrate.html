@@ -19,6 +19,12 @@
 
 <h1>Pi Radio Calibration</h1>
 
+<table>
+    <tr th:each="tunePoint : ${tunePoints}">
+        <td th:text="${tunePoint}">${tunePoint}</td>
+    </tr>
+</table>
+
 </body>
 
 </html>
