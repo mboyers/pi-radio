@@ -1,26 +1,14 @@
 package org.boyers.radio.config
 
-import org.bff.javampd.MPD
 import org.boyers.radio.actor.Station
 import org.boyers.radio.actor.Tuner
 import org.boyers.radio.actor.Volume
 import org.boyers.radio.potentiometer.Potentiometer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Profile
 
 @Configuration
 class Config {
-
-    @Bean
-    @Profile('prod')
-    MPD getMpd() {
-        MPD.Builder builder = new MPD.Builder()
-        MPD mpd = builder.build()
-        // Set repeat to true so static doesn't end if someone takes a long time finding a station
-        mpd.player.repeat = true
-        mpd
-    }
 
     @Bean
     Volume getVolume() {
