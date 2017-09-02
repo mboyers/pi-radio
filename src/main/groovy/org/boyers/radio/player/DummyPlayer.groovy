@@ -20,4 +20,9 @@ class DummyPlayer implements Player {
     void playStation(String uri) {
 
     }
+
+    @Override
+    String getNowPlaying() {
+        'fakeNowPlayingSongTitle'
+    }
 }
