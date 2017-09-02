@@ -15,7 +15,7 @@ class CalibrationController {
 
     @RequestMapping('')
     String presentCalibrationPage(Model model) {
-        model.addAttribute(tunePoints)
+        model.addAttribute("tunePoints", tunePoints)
         'calibrate'
     }
 
