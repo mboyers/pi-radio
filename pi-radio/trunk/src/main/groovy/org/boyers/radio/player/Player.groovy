@@ -4,4 +4,5 @@ interface Player {
     void setVolume(int newVolume)
     void playStatic()
     void playStation(String uri)
+    String getNowPlaying()
 }

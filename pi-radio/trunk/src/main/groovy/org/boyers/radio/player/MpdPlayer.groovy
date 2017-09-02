@@ -59,6 +59,10 @@ class MpdPlayer implements Player {
         nowPlaying == item
     }
 
+    String getNowPlaying() {
+        mpd.player.currentSong.title
+    }
+
     @Scheduled(fixedRate = 5_000L)
     void ping() {
         log.trace('Keeping mpd connection alive')
