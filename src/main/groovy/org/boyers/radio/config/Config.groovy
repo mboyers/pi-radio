@@ -1,15 +1,18 @@
 package org.boyers.radio.config
 
-import groovy.json.JsonSlurper
 import org.boyers.radio.actor.Station
 import org.boyers.radio.actor.Tuner
 import org.boyers.radio.actor.Volume
 import org.boyers.radio.potentiometer.Potentiometer
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class Config {
+
+    @Autowired
+    CalibrationPersister calibrationPersister
 
     @Bean
     Volume getVolume() {
@@ -44,12 +47,7 @@ class Config {
 
     @Bean
     Map<Integer, TunePoint> getTunePointMap() {
-        File inputFile = new File('tune-points.json')
-        if (inputFile.exists()) {
-            new JsonSlurper().parseText(inputFile.text)
-        } else {
-            [:]
-        }
+        calibrationPersister.tunePointMap
     }
 
     @Bean

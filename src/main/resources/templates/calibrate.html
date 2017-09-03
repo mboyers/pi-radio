@@ -19,11 +19,10 @@
 
 <h1>Pi Radio Calibration</h1>
 
-<table>
-    <tr th:each="tunePoint : ${tunePoints}">
-        <td th:text="${tunePointMap.get('__${tunePoint}__')}">...</td>
-    </tr>
-</table>
+    <div th:each="tunePointKey : ${tunePoints}" th:with="tunePoint=${tunePointMap.get('__${tunePointKey}__')}">
+        <div th:text="${tunePoint?.displayValue}" />
+        <div th:text="${tunePoint?.potentiometerValue}" />
+    </div>
 
 </body>
 
