@@ -3,6 +3,7 @@ package org.boyers.radio.controller
 import groovy.util.logging.Slf4j
 import org.boyers.radio.potentiometer.Potentiometer
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
@@ -20,25 +21,34 @@ import org.springframework.web.bind.annotation.ResponseBody
 class PotentiometerOverrideController {
 
     @Autowired
-    List<Potentiometer> potentiometers
+    @Qualifier('volumePot')
+    Potentiometer volumePot
+
+    @Autowired
+    @Qualifier('tunerPot')
+    Potentiometer tunerPot
 
     @RequestMapping('/setVolume')
     @ResponseBody
-    String setVolume(@RequestParam int value) {
-        potentiometers.get(0).update(value)
-        value
+    void setVolume(@RequestParam int value) {
+        volumePot.update(value)
+    }
+
+    @RequestMapping('/getVolume')
+    @ResponseBody
+    String getVolume() {
+        volumePot.adjustedValue
     }
 
     @RequestMapping('/setTuner')
     @ResponseBody
-    String setTuner(@RequestParam int value) {
-        potentiometers.get(1).update(value)
-        value
+    void setTuner(@RequestParam int value) {
+        tunerPot.update(value)
     }
 
     @RequestMapping('/getTuner')
     @ResponseBody
     String getTuner() {
-        potentiometers.get(1).adjustedValue
+        tunerPot.adjustedValue
     }
 }

@@ -18,7 +18,7 @@ class Tuner implements Actor {
     Player player
 
     @PostConstruct
-    void init() {
+    void init() {       
         stationMap = [:]
         stations.each {
             stationMap.put(it.potPosition, it)

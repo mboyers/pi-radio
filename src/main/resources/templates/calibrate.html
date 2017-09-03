@@ -21,7 +21,7 @@
 
 <table>
     <tr th:each="tunePoint : ${tunePoints}">
-        <td th:text="${tunePoint}">${tunePoint}</td>
+        <td th:text="${tunePointMap.get('__${tunePoint}__')}">...</td>
     </tr>
 </table>
 

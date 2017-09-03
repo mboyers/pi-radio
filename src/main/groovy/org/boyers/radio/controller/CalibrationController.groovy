@@ -1,6 +1,9 @@
 package org.boyers.radio.controller
 
 import groovy.util.logging.Slf4j
+import org.boyers.radio.config.TunePoint
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,12 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping('/calibrate')
 class CalibrationController {
 
-    // Though this is currently just a series of even numbers, in the future it might be less predictable (might want to include 47 for example)
-    private List<Integer> tunePoints = [30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+    @Autowired
+    @Qualifier('tunePoints')
+    private List<Integer> tunePoints
+
+    @Autowired
+    private Map<Integer, TunePoint> tunePointMap
 
     @RequestMapping('')
     String presentCalibrationPage(Model model) {
-        model.addAttribute("tunePoints", tunePoints)
+        model.addAttribute('tunePoints', tunePoints)
+        model.addAttribute('tunePointMap', tunePointMap)
         'calibrate'
     }
 

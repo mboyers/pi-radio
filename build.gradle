@@ -30,8 +30,10 @@ dependencies {
     compile("org.springframework:spring-web")
     compile("org.springframework:spring-webmvc")
     compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile("org.springframework.boot:spring-boot-devtools")
     compile("com.fasterxml.jackson.core:jackson-databind")
 	compile("org.codehaus.groovy:groovy")
+    compile("org.codehaus.groovy:groovy-json")
     compile 'com.pi4j:pi4j-core:1.1'
     compile 'net.thejavashop:javampd:5.0.3'
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
