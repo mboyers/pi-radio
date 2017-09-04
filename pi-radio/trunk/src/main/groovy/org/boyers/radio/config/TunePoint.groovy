@@ -1,6 +1,11 @@
 package org.boyers.radio.config
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@EqualsAndHashCode
+@ToString
 class TunePoint {
-    Integer displayValue
+    Integer displayPosition
     Integer potentiometerValue
 }

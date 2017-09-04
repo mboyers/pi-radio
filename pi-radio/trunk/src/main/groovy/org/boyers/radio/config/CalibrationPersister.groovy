@@ -9,16 +9,16 @@ class CalibrationPersister {
 
     private static final String TUNE_POINT_FILE_NAME = 'tune-points.json'
 
-    Map<Integer, TunePoint> getTunePointMap() {
+    List<TunePoint> getTunePoints() {
         File inputFile = new File(TUNE_POINT_FILE_NAME)
         if (inputFile.exists()) {
             new JsonSlurper().parseText(inputFile.text)
         } else {
-            [:]
+            []
         }
     }
 
-    void saveTunePointMap(Map tunePointMap) {
-        new File(TUNE_POINT_FILE_NAME).write(new JsonBuilder(tunePointMap).toPrettyString())
+    void saveTunePoints(List<TunePoint> tunePoints) {
+        new File(TUNE_POINT_FILE_NAME).write(new JsonBuilder(tunePoints).toPrettyString())
     }
 }
