@@ -62,7 +62,7 @@ class Potentiometer {
     }
 
     private void acceptNewValue(int newValue) {
-        log.debug('Channel {} changing value from {} to {}, adjustedValue is {}', channel, rawValue, newValue, adjustedValue)
+        log.debug('Channel {} changing raw value from {} to {}', channel, rawValue, newValue)
         rawValue = newValue
         actor.handleChange(adjustedValue)
         stabilized = false
