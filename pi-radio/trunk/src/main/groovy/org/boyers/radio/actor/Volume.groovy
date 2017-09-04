@@ -11,7 +11,7 @@ class Volume implements Actor {
     Player player
 
     @Override
-    void handleChange(int newVolume) {
+    void handleChange(Integer newVolume) {
         player.setVolume(performLogarithmicAdjustment(newVolume))
     }
 
