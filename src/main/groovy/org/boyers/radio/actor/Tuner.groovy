@@ -30,7 +30,7 @@ class Tuner implements Actor {
     }
     
     @Override
-    void handleChange(int potPosition) {
+    void handleChange(Integer potPosition) {
         Station station = tryToFindStation(potPosition)
         if (station) {
             player.playStation(station.uri)
