@@ -19,9 +19,15 @@
 
 <h1>Pi Radio Calibration</h1>
 
+
     <span th:each="tunePoint : ${availableTunePoints}">
-        <button th:id="${tunePoint}" th:text="${tunePoint}" type="button" class="btn btn-primary">...</button>
+        <button th:id="${tunePoint}" th:text="${tunePoint}" type="button" class="tune-point-button btn btn-primary">...</button>
     </span>
+
+
+<div>
+    <div id="message" />
+</div>
 
 </body>
 
@@ -29,7 +35,9 @@
     $(function() {
         $(".btn").click(function() {
             var clickedId = $(this).attr("id");
-            jQuery.get("/calibrate/saveTunePoint/" + clickedId);
+            jQuery.get("/calibrate/saveTunePoint/" + clickedId, function(data) {
+                $("#message").text(data);
+            });
         });
     });
 </script>
