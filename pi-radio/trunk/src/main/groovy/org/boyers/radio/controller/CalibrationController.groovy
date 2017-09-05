@@ -43,6 +43,7 @@ class CalibrationController {
     String saveTunePoint(@PathVariable Integer displayPosition) {
         addTunePoint(displayPosition)
         calibrationPersister.saveTunePoints(tunePoints)
+        "Saved ${tunerPot.adjustedValue} in tune point ${displayPosition}"
     }
 
     private void addTunePoint(Integer displayPosition) {
