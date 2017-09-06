@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<!--/*@thymesVar id="availableTunePoints" type=""*/-->
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,22 +14,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
     <title>Pi Radio Calibration</title>
-
 </head>
 
 <body>
 
-<h1>Pi Radio Calibration</h1>
+<div class="container">
 
+    <h1>Pi Radio Calibration</h1>
 
-    <span th:each="tunePoint : ${availableTunePoints}">
-        <button th:id="${tunePoint}" th:text="${tunePoint}" type="button" class="tune-point-button btn btn-primary">...</button>
-    </span>
-
-
-<div>
-    <div id="message" />
+    <div class="row">
+        <div class="col">
+            <span th:each="tunePoint : ${availableTunePoints}">
+                <button th:id="${tunePoint}" th:text="${tunePoint}" type="button" class="tune-point-button btn btn-primary">...</button>
+            </span>
+            <div id="message" />
+        </div>
+    </div>
 </div>
+
+
+
 
 </body>
 
