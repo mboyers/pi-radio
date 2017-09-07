@@ -1,5 +1,6 @@
 package org.boyers.radio.config
 
+import org.boyers.radio.actor.Announcer
 import org.boyers.radio.actor.Station
 import org.boyers.radio.actor.Tuner
 import org.boyers.radio.actor.Volume
@@ -20,6 +21,11 @@ class Config {
     }
 
     @Bean
+    Announcer getAnnouncer() {
+        new Announcer()
+    }
+
+    @Bean
     Tuner getTuner() {
         new Tuner()
     }
@@ -27,6 +33,11 @@ class Config {
     @Bean(name = 'volumePot')
     Potentiometer getVolumePot() {
         new Potentiometer(channel: 1, tolerance: 20, maxValue: 1024, jumpTolerance: 5000, actor: getVolume())
+    }
+
+    @Bean(name = 'squelchPot')
+    Potentiometer getSquelchPot() {
+        new Potentiometer(channel: 2, tolerance: 20, maxValue: 4, jumpTolerance: 5000, actor: getAnnouncer())
     }
 
     @Bean(name = 'tunerPot')
@@ -60,8 +71,8 @@ class Config {
          new Station(dialPosition: 40, uri: 'http://192.168.1.105:9000/live.ogg'),
          new Station(dialPosition: 42, uri: 'http://listen.djcmedia.com/hrhradiohigh'),
          new Station(dialPosition: 44, uri: 'http://17413.live.streamtheworld.com/WBNSFMAAC_SC'),
-         new Station(dialPosition: 46, uri: 'http://98.158.184.160:8008'),
-         new Station(dialPosition: 48, uri: 'http://icy3.abacast.com/bowers-wclgfmaac-64'),
+         new Station(dialPosition: 46, uri: 'http://98.158.184.160:8008'),  // Classic Rock 92.1 WBIK-FM
+         new Station(dialPosition: 48, uri: 'http://icy3.abacast.com/bowers-wclgfmaac-64'), // WCLQ -- Morgantown
          new Station(dialPosition: 50, uri: 'http://localhost/100-HARD-ROCK')]
     }
 }

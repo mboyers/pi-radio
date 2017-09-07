@@ -30,14 +30,14 @@ class MpdPlayer implements Player {
     }
 
     void playStatic() {
-        play('radio-static.mp3')
+        playThis('radio-static.mp3')
     }
 
     void playStation(String uri) {
-        play(uri)
+        playThis(uri)
     }
 
-    private void play(String itemToPlay) {
+    private void playThis(String itemToPlay) {
         if (alreadyPlayingThis(itemToPlay)) {
             return
         }
@@ -63,9 +63,18 @@ class MpdPlayer implements Player {
         mpd.player.currentSong.title
     }
 
+    void pause() {
+        mpd.player.pause()
+    }
+
+    void play() {
+        mpd.player.play()
+    }
+
     @Scheduled(fixedRate = 5_000L)
     void ping() {
         log.trace('Keeping mpd connection alive')
         mpd.player.status
     }
+
 }
