@@ -5,4 +5,6 @@ interface Player {
     void playStatic()
     void playStation(String uri)
     String getNowPlaying()
+    void pause()
+    void play()
 }

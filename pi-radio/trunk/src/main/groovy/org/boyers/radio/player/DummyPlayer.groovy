@@ -25,4 +25,14 @@ class DummyPlayer implements Player {
     String getNowPlaying() {
         'fakeNowPlayingSongTitle'
     }
+
+    @Override
+    void pause() {
+
+    }
+
+    @Override
+    void play() {
+
+    }
 }
