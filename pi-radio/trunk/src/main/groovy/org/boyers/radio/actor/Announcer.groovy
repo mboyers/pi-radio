@@ -18,13 +18,13 @@ class Announcer implements Actor {
     void handleChange(Integer newValue) {
         try {
             URL url = buildUrl(player.nowPlaying)
-            Clip clip = AudioSystem.getClip()
+            Clip clip = AudioSystem.clip
             clip.open(getInputStream(url))
             player.pause()
             clip.start()
             sleepWhileClipIsPlaying(clip)
-            clip.close()
             player.play()
+            clip.close()
         } catch(Exception e) {
             log.error('Exception playing audio: ', e)
         }
@@ -38,7 +38,7 @@ class Announcer implements Actor {
 
     private InputStream getInputStream(URL url) {
         URLConnection connection = url.openConnection()
-        InputStream response = connection.getInputStream()
+        InputStream response = connection.inputStream
         BufferedInputStream bufferedInputStream = new BufferedInputStream(response)
         AudioSystem.getAudioInputStream(bufferedInputStream)
     }
