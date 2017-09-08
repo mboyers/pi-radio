@@ -15,7 +15,7 @@ class Volume implements Actor {
         player.setVolume(performLogarithmicAdjustment(newVolume))
     }
 
-    private int performLogarithmicAdjustment(int newVolume) {
+    private Integer performLogarithmicAdjustment(Integer newVolume) {
         def d = newVolume / 1024.0
         if (!d) {
             d = d + 0.001

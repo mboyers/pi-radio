@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 @Service('player')
 class DummyPlayer implements Player {
     @Override
-    void setVolume(int newVolume) {
+    void setVolume(Integer newVolume) {
 
     }
 

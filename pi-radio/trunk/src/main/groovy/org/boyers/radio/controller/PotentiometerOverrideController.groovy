@@ -30,7 +30,7 @@ class PotentiometerOverrideController {
 
     @RequestMapping('/setVolume')
     @ResponseBody
-    void setVolume(@RequestParam int value) {
+    void setVolume(@RequestParam Integer value) {
         volumePot.update(value)
     }
 
@@ -42,7 +42,7 @@ class PotentiometerOverrideController {
 
     @RequestMapping('/setTuner')
     @ResponseBody
-    void setTuner(@RequestParam int value) {
+    void setTuner(@RequestParam Integer value) {
         tunerPot.update(value)
     }
 

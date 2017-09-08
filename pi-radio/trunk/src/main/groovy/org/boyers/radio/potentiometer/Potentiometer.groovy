@@ -7,27 +7,27 @@ import org.boyers.radio.actor.Actor
 @Slf4j
 @ToString
 class Potentiometer {
-    int channel
-    int tolerance = 1
-    int jumpTolerance = Integer.MAX_VALUE
+    Integer channel
+    Integer tolerance = 1
+    Integer jumpTolerance = Integer.MAX_VALUE
     Boolean ignoreFiringOnStartup = false
     Actor actor
 
-    private int rawValue = Integer.MAX_VALUE
+    private Integer rawValue = Integer.MAX_VALUE
     private def adjustmentDivisor
     private boolean stabilized = false
-    private int notChangedCount = 0
+    private Integer notChangedCount = 0
 
-    void setMaxValue(int maxValue) {
+    void setMaxValue(Integer maxValue) {
         adjustmentDivisor = 1024.0 / maxValue
         log.info('Set adjustmentDivisor to {}', adjustmentDivisor)
     }
 
-    int getAdjustedValue() {
+    Integer getAdjustedValue() {
         rawValue / adjustmentDivisor
     }
 
-    void update(int newValue) {
+    void update(Integer newValue) {
 
         // If it's not in the range of what is valid, ignore it
         if (!isInValidRange(newValue)) {
@@ -45,7 +45,7 @@ class Potentiometer {
             return
         }
 
-        int difference = Math.abs(newValue - rawValue)
+        Integer difference = Math.abs(newValue - rawValue)
 
         // Sometimes pots report wildly, if the value seems too far off, ignore it
         if (difference > jumpTolerance) {
@@ -62,11 +62,11 @@ class Potentiometer {
         }
     }
 
-    private boolean isInValidRange(int value) {
+    private Boolean isInValidRange(Integer value) {
         value >= 0 && value <= 1024
     }
 
-    private void acceptNewValue(int newValue) {
+    private void acceptNewValue(Integer newValue) {
         log.debug('Channel {} changing raw value from {} to {}', channel, rawValue, newValue)
         rawValue = newValue
         actor.handleChange(adjustedValue)
@@ -75,7 +75,7 @@ class Potentiometer {
     }
 
     // Even though a value might be in the tolerance, we might "center" it
-    private checkStabilization(int newValue) {
+    private checkStabilization(Integer newValue) {
         if (stabilized) {
             return
         }
