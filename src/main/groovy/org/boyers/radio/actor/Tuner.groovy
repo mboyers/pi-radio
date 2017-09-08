@@ -54,7 +54,7 @@ class Tuner implements Actor {
     }
 
     private TunePoint findTunePointAt(Integer potPosition) {
-        tunePoints.find() {
+        tunePoints.find {
             it.potentiometerValue == potPosition
         }
     }
