@@ -45,11 +45,6 @@ class Config {
         new Potentiometer(channel: 3, tolerance: 10, maxValue: 100, jumpTolerance: 5000, actor: getTuner())
     }
 
-    @Bean
-    List<Potentiometer> getPotentiometers() {
-        [getVolumePot(), getTunerPot()]
-    }
-
     @Bean(name = 'availableTunePoints')
     List<Integer> getAvailableTunePoints() {
         // Though this is currently just a series of even numbers, in the future it might be less predictable (might want to include 47 for example)
