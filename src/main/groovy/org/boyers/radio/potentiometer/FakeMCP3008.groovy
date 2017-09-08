@@ -17,7 +17,7 @@ class FakeMCP3008 {
 
     //@PostConstruct
     void run() {
-        int incrementor = 0
+        Integer incrementor = 0
         while (true) {
             for(Potentiometer potentiometer : potentiometers) {
                 potentiometer.update(incrementor++)

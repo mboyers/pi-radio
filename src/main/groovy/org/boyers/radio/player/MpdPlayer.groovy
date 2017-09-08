@@ -24,7 +24,7 @@ class MpdPlayer implements Player {
         mpd.player.repeat = true
     }
 
-    void setVolume(int newVolume) {
+    void setVolume(Integer newVolume) {
         mpd.player.volume = newVolume
         log.info('Set volume to {}', newVolume)
     }

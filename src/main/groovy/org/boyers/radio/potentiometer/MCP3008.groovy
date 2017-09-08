@@ -40,7 +40,7 @@ class MCP3008 {
     }
 
     @Scheduled(fixedRate = 500L)
-    void start() {
+    void readPotentiometers() {
         for (Potentiometer potentiometer : potentiometers) {
             try {
                 potentiometer.update(readAdc(potentiometer.channel))
@@ -50,18 +50,18 @@ class MCP3008 {
         }
     }
 
-    private int readAdc(int channelId) {
+    private Integer readAdc(Integer channelId) {
         chipSelectOutput.high()
 
         clockOutput.low()
         chipSelectOutput.low()
 
-        int adcCommand = channelId
+        Integer adcCommand = channelId
 
         adcCommand |= 0x18 // 0x18: 00011000
         adcCommand <<= 3
         // Send 5 bits: 8 - 3. 8 input channels on the MCP3008.
-        for (int i = 0; i < 5; i++) {
+        5.times {
             if ((adcCommand & 0x80) != 0x0) // 0x80 = 0&10000000
                 mosiOutput.high()
             else
@@ -73,8 +73,8 @@ class MCP3008 {
         }
 
         // Read in one empty bit, one null bit and 10 ADC bits
-        int adcOut = 0
-        for (int i = 0; i < 12; i++) {
+        Integer adcOut = 0
+        12.times {
             clockOutput.high()
             clockOutput.low()
             adcOut <<= 1
