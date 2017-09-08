@@ -32,17 +32,17 @@ class Config {
 
     @Bean(name = 'volumePot')
     Potentiometer getVolumePot() {
-        new Potentiometer(channel: 1, tolerance: 20, maxValue: 1024, jumpTolerance: 5000, actor: getVolume())
+        new Potentiometer(channel: 1, tolerance: 20, maxValue: 1024, actor: getVolume())
     }
 
     @Bean(name = 'squelchPot')
     Potentiometer getSquelchPot() {
-        new Potentiometer(channel: 2, tolerance: 20, maxValue: 4, jumpTolerance: 5000, actor: getAnnouncer())
+        new Potentiometer(channel: 2, tolerance: 20, maxValue: 4, ignoreFiringOnStartup: true, actor: getAnnouncer())
     }
 
     @Bean(name = 'tunerPot')
     Potentiometer getTunerPot() {
-        new Potentiometer(channel: 3, tolerance: 10, maxValue: 100, jumpTolerance: 5000, actor: getTuner())
+        new Potentiometer(channel: 3, tolerance: 10, maxValue: 100, actor: getTuner())
     }
 
     @Bean(name = 'availableTunePoints')

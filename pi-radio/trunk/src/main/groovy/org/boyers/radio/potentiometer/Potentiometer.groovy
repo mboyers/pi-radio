@@ -9,7 +9,8 @@ import org.boyers.radio.actor.Actor
 class Potentiometer {
     int channel
     int tolerance = 1
-    int jumpTolerance = 20
+    int jumpTolerance = Integer.MAX_VALUE
+    Boolean ignoreFiringOnStartup = false
     Actor actor
 
     private int rawValue = Integer.MAX_VALUE
@@ -36,7 +37,11 @@ class Potentiometer {
 
         // If this is the first update, just take it
         if (rawValue == Integer.MAX_VALUE) {
-            acceptNewValue(newValue)
+            if (ignoreFiringOnStartup) {
+                rawValue = newValue
+            } else {
+                acceptNewValue(newValue)
+            }
             return
         }
 
