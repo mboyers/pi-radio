@@ -33,7 +33,7 @@ class Tuner implements Actor {
     void handleChange(Integer potPosition) {
         Station station = tryToFindStation(potPosition)
         if (station) {
-            player.playStation(station.uri)
+            player.playStation(station)
         } else {
             player.playStatic()
         }
