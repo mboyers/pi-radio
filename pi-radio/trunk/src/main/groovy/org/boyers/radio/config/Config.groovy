@@ -58,16 +58,16 @@ class Config {
 
     @Bean
     List<Station> getStations() {
-        [new Station(dialPosition: 30, uri: 'http://ice5.securenetsystems.net/WKLC?type=.aac'),
-         new Station(dialPosition: 32, uri: 'http://18053.live.streamtheworld.com:80/WLVQFMAAC_SC'),
-         new Station(dialPosition: 34, uri: 'http://wdve-fm.akacast.akamaistream.net/7/364/20061/v1/auth.akacast.akamaistream.net/wdve-fm'),
-         new Station(dialPosition: 36, uri: 'http://wmms-fm.akacast.akamaistream.net/7/920/20015/v1/auth.akacast.akamaistream.net/wmms-fm'),
-         new Station(dialPosition: 38, uri: 'http://localhost/DCRock?lang=en-US%2cen%3bq%3d0.5'),
-         new Station(dialPosition: 40, uri: 'http://192.168.1.105:9000/live.ogg'),
-         new Station(dialPosition: 42, uri: 'http://listen.djcmedia.com/hrhradiohigh'),
-         new Station(dialPosition: 44, uri: 'http://17413.live.streamtheworld.com/WBNSFMAAC_SC'),
-         new Station(dialPosition: 46, uri: 'http://98.158.184.160:8008'),  // Classic Rock 92.1 WBIK-FM
-         new Station(dialPosition: 48, uri: 'http://icy3.abacast.com/bowers-wclgfmaac-64'), // WCLQ -- Morgantown
-         new Station(dialPosition: 50, uri: 'http://localhost/100-HARD-ROCK')]
+        [new Station(dialPosition: 30, uri: 'http://ice5.securenetsystems.net/WKLC?type=.aac' , name: 'WKLC'),
+         new Station(dialPosition: 32, uri: 'http://18053.live.streamtheworld.com:80/WLVQFMAAC_SC', name: '96.3 WLVQ FM - Iconic Rock'),
+         new Station(dialPosition: 34, uri: 'http://wdve-fm.akacast.akamaistream.net/7/364/20061/v1/auth.akacast.akamaistream.net/wdve-fm', name: '102.5 WDVE - Pittsburgh'),
+         new Station(dialPosition: 36, uri: 'http://wmms-fm.akacast.akamaistream.net/7/920/20015/v1/auth.akacast.akamaistream.net/wmms-fm', name: 'WMMS - Cleveland'),
+         new Station(dialPosition: 38, uri: 'http://localhost/DCRock?lang=en-US%2cen%3bq%3d0.5', name: 'DC Rock Radio - Forgotten Classics'),
+         new Station(dialPosition: 40, uri: 'http://192.168.1.105:9000/live.ogg', name: 'DMAP'),
+         new Station(dialPosition: 42, uri: 'http://listen.djcmedia.com/hrhradiohigh', name: 'Hard Rock Heaven - 80s Hard Rock Radio Hard Rock Heaven'),
+         new Station(dialPosition: 44, uri: 'http://17413.live.streamtheworld.com/WBNSFMAAC_SC', name: '97.1 - The Fan - WBNS'),
+         new Station(dialPosition: 46, uri: 'http://98.158.184.160:8008', name: 'Classic Rock 92.1 WBIK-FM - Pleasant City, OH'),
+         new Station(dialPosition: 48, uri: 'http://icy3.abacast.com/bowers-wclgfmaac-64', name: 'WCLQ -- Morgantown'),
+         new Station(dialPosition: 50, uri: 'http://localhost/100-HARD-ROCK', name: '100% HARD ROCK')]
     }
 }

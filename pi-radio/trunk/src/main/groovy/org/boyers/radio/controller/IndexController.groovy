@@ -16,7 +16,8 @@ class IndexController {
 
     @RequestMapping(value = '/')
     String index(Model model) {
-        model.addAttribute('nowPlayingSong', player.nowPlaying)
+        model.addAttribute('nowPlayingStation', player.nowPlayingStation)
+        model.addAttribute('nowPlayingSong', player.nowPlayingSong)
         'index'
     }
 }

@@ -1,5 +1,6 @@
 package org.boyers.radio.player
 
+import org.boyers.radio.actor.Station
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 
@@ -17,12 +18,17 @@ class DummyPlayer implements Player {
     }
 
     @Override
-    void playStation(String uri) {
+    void playStation(Station station) {
 
     }
 
     @Override
-    String getNowPlaying() {
+    String getNowPlayingStation() {
+        '102.5 WDVE - Pittsburgh'
+    }
+
+    @Override
+    String getNowPlayingSong() {
         'Conniption Fit - The Rest Is Yet To Come'
     }
 

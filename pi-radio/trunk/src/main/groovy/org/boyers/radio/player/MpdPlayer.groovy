@@ -3,6 +3,7 @@ package org.boyers.radio.player
 import groovy.util.logging.Slf4j
 import org.bff.javampd.MPD
 import org.bff.javampd.objects.MPDSong
+import org.boyers.radio.actor.Station
 import org.springframework.context.annotation.Profile
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
@@ -13,7 +14,8 @@ import org.springframework.stereotype.Service
 class MpdPlayer implements Player {
 
     private MPD mpd
-    private String nowPlaying
+    private Station nowPlayingStation
+    private String nowPlayingSong
 
     MpdPlayer() {
         log.info('Building player...')
@@ -33,8 +35,9 @@ class MpdPlayer implements Player {
         playThis('radio-static.mp3')
     }
 
-    void playStation(String uri) {
-        playThis(uri)
+    void playStation(Station station) {
+        nowPlayingStation = station
+        playThis(station.uri)
     }
 
     private void playThis(String itemToPlay) {
@@ -50,16 +53,20 @@ class MpdPlayer implements Player {
 
         mpd.player.play()
 
-        nowPlaying = itemToPlay
+        nowPlayingSong = itemToPlay
 
         log.info('Played {}', itemToPlay)
     }
 
     boolean alreadyPlayingThis(String item) {
-        nowPlaying == item
+        nowPlayingSong == item
     }
 
-    String getNowPlaying() {
+    String getNowPlayingStation() {
+        nowPlayingStation?.name
+    }
+
+    String getNowPlayingSong() {
         mpd.player.currentSong.title
     }
 
