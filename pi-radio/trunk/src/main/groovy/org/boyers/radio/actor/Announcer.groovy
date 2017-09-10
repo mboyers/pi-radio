@@ -17,10 +17,10 @@ class Announcer implements Actor {
     @Override
     void handleChange(Integer newValue) {
         try {
+            player.pause()
             URL url = buildUrl(player.nowPlaying)
             Clip clip = AudioSystem.clip
             clip.open(getInputStream(url))
-            player.pause()
             clip.start()
             sleepWhileClipIsPlaying(clip)
             player.play()
