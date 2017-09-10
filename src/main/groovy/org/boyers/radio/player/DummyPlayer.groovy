@@ -23,7 +23,7 @@ class DummyPlayer implements Player {
 
     @Override
     String getNowPlaying() {
-        'fakeNowPlayingSongTitle'
+        'Conniption Fit - The Rest Is Yet To Come'
     }
 
     @Override
