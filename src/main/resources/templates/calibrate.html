@@ -3,15 +3,21 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head></head>
+
 <!--/*@thymesVar id="availableTunePoints" type=""*/-->
 
 <body>
-    <h1>Pi Radio Calibration</h1>
-            <div class="btn-group">
-                <button th:each="tunePoint : ${availableTunePoints}" th:id="${tunePoint}" th:text="${tunePoint}" type="button"
-                        class="tune-point-button btn btn-danger">...</button>
-            </div>
-            <div id="message" class="well"/>
+
+<div class="row">
+    <div class="text-center">
+        <h4>To calibrate, tune the radio to the desired spot on the dial and click the corresponding number button.</h4>
+        <div class="btn-group">
+            <button th:each="tunePoint : ${availableTunePoints}" th:id="${tunePoint}" th:text="${tunePoint}" type="button"
+                    class="tune-point-button btn btn-primary">...</button>
+        </div>
+        <div id="message" class="well"/>
+    </div>
+</div>
 
 </body>
 
@@ -25,7 +31,5 @@
         });
     });
 </script>
-
-
 
 </html>

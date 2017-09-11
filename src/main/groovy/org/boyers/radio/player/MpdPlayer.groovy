@@ -32,6 +32,7 @@ class MpdPlayer implements Player {
     }
 
     void playStatic() {
+        nowPlayingStation = null
         playThis('radio-static.mp3')
     }
 
@@ -63,7 +64,11 @@ class MpdPlayer implements Player {
     }
 
     String getNowPlayingStation() {
-        nowPlayingStation?.name
+        if (nowPlayingStation) {
+            nowPlayingStation.name
+        } else {
+            '.....Static.....'
+        }
     }
 
     String getNowPlayingSong() {
