@@ -18,7 +18,7 @@ class Announcer implements Actor {
     void handleChange(Integer newValue) {
         try {
             player.pause()
-            URL url = buildUrl(player.nowPlaying)
+            URL url = buildUrl("${player.nowPlayingSong}. ${player.nowPlayingStation}")
             Clip clip = AudioSystem.clip
             clip.open(getInputStream(url))
             clip.start()
