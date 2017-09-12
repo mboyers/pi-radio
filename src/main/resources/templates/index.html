@@ -38,11 +38,21 @@
         <div class="panel">
             <div class="panel-heading">
                 <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#test-station-panel">Test Stations</a>
+                </h4>
+            </div>
+            <div id="test-station-panel" class="panel-collapse collapse">
+                <div id="test-station-content" class="panel-body" />
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <h4 class="panel-title">
                     <a data-toggle="collapse" href="#calibrate-panel">Calibrate</a>
                 </h4>
             </div>
             <div id="calibrate-panel" class="panel-collapse collapse">
-                <div id="calibrate" class="panel-body" />
+                <div id="calibrate-content" class="panel-body" />
             </div>
         </div>
     </div>
@@ -52,7 +62,8 @@
 
 <script th:inline="javascript">
     $(function() {
-        $("#calibrate").load("/calibrate");
+        $("#test-station-content").load("/testStation");
+        $("#calibrate-content").load("/calibrate");
     });
 </script>
 
