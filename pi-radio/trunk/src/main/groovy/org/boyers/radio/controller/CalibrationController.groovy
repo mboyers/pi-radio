@@ -47,17 +47,19 @@ class CalibrationController {
     }
 
     private void addTunePoint(Integer displayPosition) {
-        removeTunePointIfExists(displayPosition)
-        tunePoints.add(new TunePoint(displayPosition: displayPosition, potentiometerValue: tunerPot.adjustedValue))
+        TunePoint tunePoint = new TunePoint(displayPosition: displayPosition, potentiometerValue: tunerPot.adjustedValue)
+        addOrReplaceTunePointInList(tunePoint)
     }
 
-    private void removeTunePointIfExists(Integer displayPosition) {
-        TunePoint removeMe = tunePoints.find {
-            it.displayPosition == displayPosition
+    private addOrReplaceTunePointInList(TunePoint tunePoint) {
+        Integer index = tunePoints.findIndexOf {
+            it.displayPosition == tunePoint.displayPosition
         }
-        
-        if (removeMe) {
-            tunePoints.remove(removeMe)
+
+        if (index != -1) {
+            tunePoints.putAt(index, tunePoint)
+        } else {
+            tunePoints.add(tunePoint)
         }
     }
 
