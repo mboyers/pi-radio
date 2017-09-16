@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+
+<div class="text-center">
+    <div th:each="station : ${stations}" class="row">
+        <form>
+            <div class="form-group">
+                <div class="col-lg-1">
+                    <h4 th:text="${station.dialPosition}"></h4>
+                    <input type="hidden" th:value="${station.dialPosition}" name="dialPosition"/>
+                </div>
+                <div class="col-lg-5">
+                    <input th:value="${station.name}" name="name" type="text" class="form-control" />
+                </div>
+                <div class="col-lg-5">
+                    <input th:value="${station.uri}" name="uri" type="text" class="form-control" />
+                </div>
+                <div class="col-lg-1">
+                    <button id="play-test-station" type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+
+<script th:inline="javascript">
+    $(function() {
+        $("form").submit(function(event) {
+            event.preventDefault();
+            jQuery.post('/stationConfiguration', $(this).serialize())
+
+        });
+    });
+</script>
+
+</html>
