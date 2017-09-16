@@ -3,6 +3,7 @@ svn import -m "Initial version" pi-radio svn://localhost/boyers/pi-radio/trunk
 Here's the chip: https://www.adafruit.com/product/856
 Here's the sample code I copied for this solution: http://www.lediouris.net/RaspberryPI/ADC/readme.html
 Here's some sample code that I couldn't get to work: https://github.com/Pi4J/pi4j/blob/master/pi4j-example/src/main/java/MCP3008GpioExample.java
+Here's the bootstrap theme: https://bootswatch.com/darkly
 
 Had to run "sudo raspi-config", then go to "Advanced", then "Enable SPI" to use pi4j gpio extensions, otherwise
 I was getting the following message:
