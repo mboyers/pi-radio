@@ -22,16 +22,7 @@
                 </h4>
             </div>
             <div id="now-playing-panel" class="panel-collapse">
-                <table class="table">
-                    <tr>
-                        <td><h1 class="text-primary pull-right">Station:</h1></td>
-                        <td><h1 th:text="${nowPlayingStation}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h1 class="text-primary pull-right">Song:</h1></td>
-                        <td><h1 th:text="${nowPlayingSong}"/></td>
-                    </tr>
-                </table>
+                <div id="now-playing-content" class="panel-body" />
             </div>
         </div>
         <div class="panel">
@@ -72,6 +63,7 @@
 
 <script th:inline="javascript">
     $(function() {
+        $("#now-playing-content").load("/nowPlaying");
         $("#calibrate-content").load("/calibrate");
         $("#test-station-content").load("/testStation");
         $("#station-configuration-content").load("/stationConfiguration");

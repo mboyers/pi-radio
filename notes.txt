@@ -5,6 +5,12 @@ Here's the sample code I copied for this solution: http://www.lediouris.net/Rasp
 Here's some sample code that I couldn't get to work: https://github.com/Pi4J/pi4j/blob/master/pi4j-example/src/main/java/MCP3008GpioExample.java
 Here's the bootstrap theme: https://bootswatch.com/darkly
 
+Station Finders:
+http://onlineradiobox.com
+https://www.internet-radio.com/stations/70s/
+https://www.radionomy.com/en/radio/classicrock109/index
+http://streema.com/radios/Classic_Deep_Cuts
+
 Had to run "sudo raspi-config", then go to "Advanced", then "Enable SPI" to use pi4j gpio extensions, otherwise
 I was getting the following message:
   Unable to open SPI device: No such file or directory
