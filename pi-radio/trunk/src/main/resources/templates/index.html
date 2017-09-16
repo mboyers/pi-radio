@@ -38,6 +38,16 @@
         <div class="panel">
             <div class="panel-heading">
                 <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#calibrate-panel">Calibrate</a>
+                </h4>
+            </div>
+            <div id="calibrate-panel" class="panel-collapse collapse">
+                <div id="calibrate-content" class="panel-body" />
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <h4 class="panel-title">
                     <a data-toggle="collapse" href="#test-station-panel">Test Stations</a>
                 </h4>
             </div>
@@ -48,13 +58,14 @@
         <div class="panel">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#calibrate-panel">Calibrate</a>
+                    <a data-toggle="collapse" href="#station-configuration-panel">Configure Stations</a>
                 </h4>
             </div>
-            <div id="calibrate-panel" class="panel-collapse collapse">
-                <div id="calibrate-content" class="panel-body" />
+            <div id="station-configuration-panel" class="panel-collapse collapse">
+                <div id="station-configuration-content" class="panel-body" />
             </div>
         </div>
+
     </div>
 </div>
 
@@ -62,8 +73,9 @@
 
 <script th:inline="javascript">
     $(function() {
-        $("#test-station-content").load("/testStation");
         $("#calibrate-content").load("/calibrate");
+        $("#test-station-content").load("/testStation");
+        $("#station-configuration-content").load("/stationConfiguration");
     });
 </script>
 

@@ -19,8 +19,8 @@ class StationTesterController {
     Player player
 
     @RequestMapping('')
-    String index() {
-        'stationTester'
+    String presentStationTestSection() {
+        'station-tester'
     }
 
     @RequestMapping(value = '/play', method = RequestMethod.POST)
