@@ -2,7 +2,7 @@ package org.boyers.radio.config
 
 import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
-import org.boyers.radio.actor.Station
+import org.boyers.radio.model.Station
 import org.springframework.stereotype.Service
 
 @Service

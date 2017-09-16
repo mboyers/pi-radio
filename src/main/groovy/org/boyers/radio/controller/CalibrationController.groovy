@@ -2,7 +2,7 @@ package org.boyers.radio.controller
 
 import groovy.util.logging.Slf4j
 import org.boyers.radio.config.CalibrationPersister
-import org.boyers.radio.config.TunePoint
+import org.boyers.radio.model.TunePoint
 import org.boyers.radio.potentiometer.Potentiometer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier

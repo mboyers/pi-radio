@@ -2,9 +2,10 @@ package org.boyers.radio.config
 
 import groovy.util.logging.Slf4j
 import org.boyers.radio.actor.Announcer
-import org.boyers.radio.actor.Station
+import org.boyers.radio.model.Station
 import org.boyers.radio.actor.Tuner
 import org.boyers.radio.actor.Volume
+import org.boyers.radio.model.TunePoint
 import org.boyers.radio.potentiometer.Potentiometer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean

@@ -1,4 +1,4 @@
-package org.boyers.radio.config
+package org.boyers.radio.model
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

@@ -1,7 +1,7 @@
 package org.boyers.radio.controller
 
 import groovy.util.logging.Slf4j
-import org.boyers.radio.actor.Station
+import org.boyers.radio.model.Station
 import org.boyers.radio.config.StationConfigurationPersister
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
