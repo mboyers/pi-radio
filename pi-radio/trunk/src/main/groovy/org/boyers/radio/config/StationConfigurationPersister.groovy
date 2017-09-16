@@ -3,7 +3,9 @@ package org.boyers.radio.config
 import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
 import org.boyers.radio.actor.Station
+import org.springframework.stereotype.Service
 
+@Service
 class StationConfigurationPersister {
     private static final String STATION_CONFIGURATION_FILE_NAME = 'station-configuration.json'
 

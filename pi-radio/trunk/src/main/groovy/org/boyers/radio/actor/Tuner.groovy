@@ -10,8 +10,6 @@ import javax.annotation.PostConstruct
 @Slf4j
 class Tuner implements Actor {
 
-    private Map<Integer, Station> stationMap
-
     @Autowired
     List<TunePoint> tunePoints
 
@@ -20,14 +18,6 @@ class Tuner implements Actor {
 
     @Autowired
     Player player
-
-    @PostConstruct
-    void init() {       
-        stationMap = [:]
-        stations.each {
-            stationMap.put(it.dialPosition, it)
-        }
-    }
     
     @Override
     void handleChange(Integer potPosition) {
@@ -44,9 +34,12 @@ class Tuner implements Actor {
         TunePoint tunePoint = findTunePointAt(potPosition)
         if (tunePoint) {
             log.info('Found tune point of {}', tunePoint.displayPosition)
-            Station station = stationMap.get(tunePoint.displayPosition)
+            Station station = findStationAtTunePoint(tunePoint.displayPosition)
             if (station) {
                 return station
+            } else {
+                log.info('No station found at tune point {}', tunePoint)
+                log.info('Available stations: {}', stations)
             }
         }
 
@@ -56,6 +49,12 @@ class Tuner implements Actor {
     private TunePoint findTunePointAt(Integer potPosition) {
         tunePoints.find {
             it.potentiometerValue == potPosition
+        }
+    }
+
+    private Station findStationAtTunePoint(Integer tunePointValue) {
+        stations.find {
+            it.dialPosition == tunePointValue
         }
     }
 }
