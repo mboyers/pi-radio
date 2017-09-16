@@ -1,11 +1,10 @@
 package org.boyers.radio.actor
 
 import groovy.util.logging.Slf4j
-import org.boyers.radio.config.TunePoint
+import org.boyers.radio.model.TunePoint
+import org.boyers.radio.model.Station
 import org.boyers.radio.player.Player
 import org.springframework.beans.factory.annotation.Autowired
-
-import javax.annotation.PostConstruct
 
 @Slf4j
 class Tuner implements Actor {

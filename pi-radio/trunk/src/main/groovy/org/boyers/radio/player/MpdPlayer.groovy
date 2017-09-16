@@ -3,7 +3,7 @@ package org.boyers.radio.player
 import groovy.util.logging.Slf4j
 import org.bff.javampd.MPD
 import org.bff.javampd.objects.MPDSong
-import org.boyers.radio.actor.Station
+import org.boyers.radio.model.Station
 import org.springframework.context.annotation.Profile
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service

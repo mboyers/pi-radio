@@ -1,6 +1,6 @@
 package org.boyers.radio.player
 
-import org.boyers.radio.actor.Station
+import org.boyers.radio.model.Station
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Service
 
