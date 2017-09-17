@@ -18,10 +18,10 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#now-playing-panel">PI Radio - Now Playing</a>
+                    <a id="now-playing-panel-header-link" data-toggle="collapse" href="#now-playing-panel">PI Radio - Now Playing</a>
                 </h4>
             </div>
-            <div id="now-playing-panel" class="panel-collapse">
+            <div id="now-playing-panel" class="panel-collapse in">
                 <div id="now-playing-content" class="panel-body" />
             </div>
         </div>
@@ -67,6 +67,10 @@
         $("#calibrate-content").load("/calibrate");
         $("#test-station-content").load("/testStation");
         $("#station-configuration-content").load("/stationConfiguration");
+
+        $("#now-playing-panel-header-link").click(function() {
+            $("#now-playing-content").load("/nowPlaying");
+        });
     });
 </script>
 
