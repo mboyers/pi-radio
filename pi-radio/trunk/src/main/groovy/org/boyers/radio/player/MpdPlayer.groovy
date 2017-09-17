@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Profile
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 
+import java.util.regex.Matcher
+
 @Slf4j
 @Profile('prod')
 @Service('player')
@@ -72,7 +74,18 @@ class MpdPlayer implements Player {
     }
 
     String getNowPlayingSong() {
-        mpd.player.currentSong.title
+        cleanseNowPlaying(mpd.player.currentSong.title)
+    }
+
+    String cleanseNowPlaying(String nowPlaying) {
+        Matcher matcher = nowPlaying =~ /(.*)text="(.*?)"/
+        if (matcher.matches()) {
+            String artist = matcher[0][1]
+            String song = matcher[0][2]
+            return artist + song
+        }
+
+        nowPlaying
     }
 
     void pause() {
