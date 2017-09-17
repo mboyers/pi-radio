@@ -1,4 +1,9 @@
 Thread for each pot, as it stands now, only one thing can happen at a time
 The findStationAtTunePoint method exists in two files, is there a way to encapsulate the list stuff for each persisted object?
-Strip unwanted text from iHeartRadio station now playing: Eric Clapton - text="Forever Man" song_spot="M" MediaBaseId="1086663" itunesTrackId="0" amgTrackId="-1" amgArtistId="0" TAID="39635" TPID="1055580" cartcutId="6040473001"
 Get now playing section refreshable
+Get rid of the table for now playing, try to use columns
+Consider sockets to push changes
+Consider using a pi3 since it takes a while to load
+
+DONE:
+Strip unwanted text from iHeartRadio station now playing
