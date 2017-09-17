@@ -9,7 +9,7 @@ import static ch.qos.logback.classic.Level.INFO
 
 jmxConfigurator()
 
-def sharedPattern = '%d{yyyy-MM-dd HH:mm:ss},%p,%c,%L,%M %m%n'
+def sharedPattern = '%d{yyyy-MM-dd HH:mm:ss},%p,[%thread],%c,%L,%M %m%n'
 
 appender('Console', ConsoleAppender) {
     layout(PatternLayout) {

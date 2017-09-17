@@ -3,10 +3,12 @@ package org.boyers.radio.actor
 import groovy.util.logging.Slf4j
 import org.boyers.radio.player.Player
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.web.util.UriComponentsBuilder
 
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
+import java.util.concurrent.ThreadPoolExecutor
 
 @Slf4j
 class Announcer implements Actor {
@@ -14,8 +16,20 @@ class Announcer implements Actor {
     @Autowired
     Player player
 
+    @Autowired
+    @Qualifier('announcerExecutor')
+    ThreadPoolExecutor executor
+
     @Override
     void handleChange(Integer newValue) {
+        def announcer = {
+            makeAnnouncement()
+        } as Runnable
+
+        executor.execute(announcer)
+    }
+
+    private makeAnnouncement() {
         try {
             player.pause()
             URL url = buildUrl("${player.nowPlayingSong}. ${player.nowPlayingStation}")
