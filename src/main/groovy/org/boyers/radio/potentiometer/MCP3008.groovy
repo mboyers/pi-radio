@@ -18,15 +18,15 @@ import org.springframework.stereotype.Service
 @Profile('prod')
 class MCP3008 {
 
-    private Pin spiClk  = RaspiPin.GPIO_01 // Pin #18, clock
-    private Pin spiMiso = RaspiPin.GPIO_04 // Pin #23, data in.  MISO: Master In Slave Out
-    private Pin spiMosi = RaspiPin.GPIO_05 // Pin #24, data out. MOSI: Master Out Slave In
-    private Pin spiCs   = RaspiPin.GPIO_06 // Pin #25, Chip Select
+    private final Pin spiClk  = RaspiPin.GPIO_01 // Pin #18, clock
+    private final Pin spiMiso = RaspiPin.GPIO_04 // Pin #23, data in.  MISO: Master In Slave Out
+    private final Pin spiMosi = RaspiPin.GPIO_05 // Pin #24, data out. MOSI: Master Out Slave In
+    private final Pin spiCs   = RaspiPin.GPIO_06 // Pin #25, Chip Select
 
-    private GpioPinDigitalInput  misoInput
-    private GpioPinDigitalOutput mosiOutput
-    private GpioPinDigitalOutput clockOutput
-    private GpioPinDigitalOutput chipSelectOutput
+    private final GpioPinDigitalInput  misoInput
+    private final GpioPinDigitalOutput mosiOutput
+    private final GpioPinDigitalOutput clockOutput
+    private final GpioPinDigitalOutput chipSelectOutput
 
     @Autowired
     List<Potentiometer> potentiometers

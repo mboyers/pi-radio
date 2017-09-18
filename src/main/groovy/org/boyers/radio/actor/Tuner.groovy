@@ -41,17 +41,16 @@ class Tuner implements Actor {
     }
 
     private Station tryToFindStation(Integer potPosition) {
-        // First, see if we are on a tune point
         TunePoint tunePoint = findTunePointAt(potPosition)
         if (tunePoint) {
             log.info('Found tune point of {}', tunePoint.displayPosition)
             Station station = findStationAtTunePoint(tunePoint.displayPosition)
             if (station) {
                 return station
-            } else {
-                log.info('No station found at tune point {}', tunePoint)
-                log.info('Available stations: {}', stations)
             }
+
+            log.info('No station found at tune point {}', tunePoint)
+            log.info('Available stations: {}', stations)
         }
 
         null
