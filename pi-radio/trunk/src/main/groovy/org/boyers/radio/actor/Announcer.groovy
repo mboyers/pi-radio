@@ -23,7 +23,7 @@ class Announcer implements Actor {
 
     @Override
     void handleChange(Integer newValue) {
-        def announcer = {
+        Runnable announcer = {
             makeAnnouncement()
         } as Runnable
 

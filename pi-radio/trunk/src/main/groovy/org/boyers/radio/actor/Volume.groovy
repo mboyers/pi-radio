@@ -20,7 +20,7 @@ class Volume implements Actor {
     @Override
     void handleChange(Integer newVolume) {
 
-        def volumeChanger = {
+        Runnable volumeChanger = {
             player.setVolume(performLogarithmicAdjustment(newVolume))
         } as Runnable
 
