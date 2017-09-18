@@ -8,6 +8,7 @@ import org.springframework.web.util.UriComponentsBuilder
 
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
+import java.util.concurrent.RejectedExecutionException
 import java.util.concurrent.ThreadPoolExecutor
 
 @Slf4j
@@ -26,7 +27,11 @@ class Announcer implements Actor {
             makeAnnouncement()
         } as Runnable
 
-        executor.execute(announcer)
+        try {
+            executor.execute(announcer)
+        } catch (RejectedExecutionException e) {
+            log.debug('Ignoring announcement request - already announcing')
+        }
     }
 
     private makeAnnouncement() {
