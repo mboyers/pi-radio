@@ -28,7 +28,7 @@ class Tuner implements Actor {
     @Override
     void handleChange(Integer potPosition) {
 
-        def tunerChanger = {
+        Runnable tunerChanger = {
             Station station = tryToFindStation(potPosition)
             if (station) {
                 player.playStation(station)
