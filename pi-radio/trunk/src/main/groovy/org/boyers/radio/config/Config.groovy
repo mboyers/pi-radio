@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit
 @Configuration
 class Config {
 
+    private static final Integer THREAD_KEEP_ALIVE_TIME = 3000
+
     @Autowired
     CalibrationPersister calibrationPersister
 
@@ -43,17 +45,17 @@ class Config {
 
     @Bean(name = 'volumePot')
     Potentiometer getVolumePot() {
-        new Potentiometer(channel: 1, tolerance: 20, maxValue: 1024, actor: getVolume())
+        new Potentiometer(channel: 1, tolerance: 20, maxValue: 1024, actor: volume)
     }
 
     @Bean(name = 'squelchPot')
     Potentiometer getSquelchPot() {
-        new Potentiometer(channel: 2, tolerance: 20, maxValue: 10, ignoreFiringOnStartup: true, actor: getAnnouncer())
+        new Potentiometer(channel: 2, tolerance: 20, maxValue: 10, ignoreFiringOnStartup: true, actor: announcer)
     }
 
     @Bean(name = 'tunerPot')
     Potentiometer getTunerPot() {
-        new Potentiometer(channel: 3, tolerance: 10, maxValue: 100, actor: getTuner())
+        new Potentiometer(channel: 3, tolerance: 10, maxValue: 100, actor: tuner)
     }
 
     @Bean(name = 'availableTunePoints')
@@ -71,25 +73,25 @@ class Config {
 
     @Bean
     List<Station> getStations() {
-        List<Station> stations = stationConfigurationPersister.getStations()
+        List<Station> stations = stationConfigurationPersister.stations
         log.info('Loaded stations: {}', stations)
         stations
     }
 
     @Bean(name = 'volumeExecutor')
     ThreadPoolExecutor getVolumeExecutor() {
-        new ThreadPoolExecutor(1, 1, 300, TimeUnit.SECONDS, new LinkedBlockingQueue())
+        new ThreadPoolExecutor(1, 1, THREAD_KEEP_ALIVE_TIME, TimeUnit.SECONDS, new LinkedBlockingQueue())
     }
 
     // This executor is set up with a single thread and a synchronous queue so that it fails fast when busy.  The idea is to
     // not play two announcements immediately one after the next if someone kept twisting the knob waiting for the announcement.
     @Bean(name = 'announcerExecutor')
     ThreadPoolExecutor getAnnouncerExecutor() {
-        new ThreadPoolExecutor(1, 1, 300, TimeUnit.SECONDS, new SynchronousQueue())
+        new ThreadPoolExecutor(1, 1, THREAD_KEEP_ALIVE_TIME, TimeUnit.SECONDS, new SynchronousQueue())
     }
 
     @Bean(name = 'tunerExecutor')
     ThreadPoolExecutor getTunerExecutor() {
-        new ThreadPoolExecutor(1, 1, 300, TimeUnit.SECONDS, new LinkedBlockingQueue())
+        new ThreadPoolExecutor(1, 1, THREAD_KEEP_ALIVE_TIME, TimeUnit.SECONDS, new LinkedBlockingQueue())
     }
 }

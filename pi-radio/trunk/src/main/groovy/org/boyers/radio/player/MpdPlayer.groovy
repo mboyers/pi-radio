@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service
 @Service('player')
 class MpdPlayer implements Player {
 
-    private MPD mpd
+    private final MPD mpd
+    private final TitleScrubber titleScrubber = new TitleScrubber()
+    
     private Station nowPlayingStation
     private String nowPlayingSong
-    private TitleScrubber titleScrubber = new TitleScrubber()
 
     MpdPlayer() {
         log.info('Building player...')
