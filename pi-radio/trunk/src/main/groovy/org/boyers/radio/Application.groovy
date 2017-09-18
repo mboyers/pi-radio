@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 
 @SpringBootApplication
 @EnableScheduling
-@ComponentScan(['org.boyers.radio', 'org.boyers.radio.controller'])
+@ComponentScan('org.boyers.radio')
 class Application {
 
     static void main(String[] args) {
