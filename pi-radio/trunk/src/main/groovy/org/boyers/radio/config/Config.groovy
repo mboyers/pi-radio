@@ -48,7 +48,7 @@ class Config {
 
     @Bean(name = 'squelchPot')
     Potentiometer getSquelchPot() {
-        new Potentiometer(channel: 2, tolerance: 20, maxValue: 4, ignoreFiringOnStartup: true, actor: getAnnouncer())
+        new Potentiometer(channel: 2, tolerance: 20, maxValue: 10, ignoreFiringOnStartup: true, actor: getAnnouncer())
     }
 
     @Bean(name = 'tunerPot')
