@@ -14,7 +14,7 @@ class Potentiometer {
     Actor actor
 
     private Integer rawValue = Integer.MAX_VALUE
-    private def adjustmentDivisor
+    private BigDecimal adjustmentDivisor
     private boolean stabilized = false
     private Integer notChangedCount = 0
 
@@ -31,7 +31,7 @@ class Potentiometer {
 
         // If it's not in the range of what is valid, ignore it
         if (!isInValidRange(newValue)) {
-            log.warn("Ignoring invalid potentiometer value: {}", newValue)
+            log.warn('Ignoring invalid potentiometer value: {}', newValue)
             return
         }
 
