@@ -39,7 +39,7 @@ class MCP3008 {
         misoInput = gpio.provisionDigitalInputPin(spiMiso, 'MISO')
     }
 
-    @Scheduled(fixedRate = 500L)
+    @Scheduled(fixedRate = 100L)
     void readPotentiometers() {
         for (Potentiometer potentiometer : potentiometers) {
             try {
