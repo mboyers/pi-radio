@@ -17,15 +17,26 @@ class Volume implements Actor {
     @Qualifier('volumeExecutor')
     ThreadPoolExecutor executor
 
+    Integer currentVolume = 0
+
     @Override
     void handleChange(Integer newVolume) {
 
+        Integer adjustedNewVolume = performLogarithmicAdjustment(newVolume)
+
+        // Slide to the new volume so it doesn't sound too abrupt
+        (currentVolume..adjustedNewVolume).each {
+            setVolume(it)
+        }
+    }
+
+    private void setVolume(Integer newVolume) {
         Runnable volumeChanger = {
-            player.setVolume(performLogarithmicAdjustment(newVolume))
+            player.setVolume(newVolume)
         } as Runnable
 
         executor.execute(volumeChanger)
-
+        currentVolume = newVolume
     }
 
     private Integer performLogarithmicAdjustment(Integer newVolume) {
