@@ -18,11 +18,6 @@ class StationTesterController {
     @Autowired
     Player player
 
-    @RequestMapping('')
-    String presentStationTestSection() {
-        'station-tester'
-    }
-
     @RequestMapping(value = '/play', method = RequestMethod.POST)
     @ResponseBody
     void playUserSuppliedStation(@RequestBody  String stationUri) {

@@ -2,12 +2,12 @@ package org.boyers.radio.controller
 
 import groovy.util.logging.Slf4j
 import org.boyers.radio.config.CalibrationPersister
+import org.boyers.radio.model.Status
 import org.boyers.radio.model.TunePoint
 import org.boyers.radio.potentiometer.Potentiometer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
@@ -31,19 +31,18 @@ class CalibrationController {
     @Autowired
     private CalibrationPersister calibrationPersister
 
-    @RequestMapping('')
-    String presentCalibrationPage(Model model) {
-        model.addAttribute('availableTunePoints', availableTunePoints)
-        model.addAttribute('tunePoints', tunePoints)
-        'calibrate'
+    @RequestMapping('/availableTunePoints')
+    @ResponseBody
+    List<Integer> getAvailableTunePoints() {
+        availableTunePoints
     }
 
-    @RequestMapping('/saveTunePoint/{displayPosition}')
+    @RequestMapping('/tunePoint/{displayPosition}')
     @ResponseBody
-    String saveTunePoint(@PathVariable Integer displayPosition) {
+    Status saveTunePoint(@PathVariable Integer displayPosition) {
         addTunePoint(displayPosition)
         calibrationPersister.saveTunePoints(tunePoints)
-        "Saved ${tunerPot.adjustedValue} in tune point ${displayPosition}"
+        new Status(message: "Saved ${tunerPot.adjustedValue} in tune point ${displayPosition}")
     }
 
     private void addTunePoint(Integer displayPosition) {
@@ -62,5 +61,4 @@ class CalibrationController {
             tunePoints.add(tunePoint)
         }
     }
-
 }

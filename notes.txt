@@ -5,12 +5,31 @@ Here's the sample code I copied for this solution: http://www.lediouris.net/Rasp
 Here's some sample code that I couldn't get to work: https://github.com/Pi4J/pi4j/blob/master/pi4j-example/src/main/java/MCP3008GpioExample.java
 Here's the bootstrap theme: https://bootswatch.com/darkly
 
+----------------
+
+Thank you for registering at Voice RSS.
+
+You may now log in to http://www.voicerss.org/personel using the following login and password:
+Your login: mboyers@yahoo.com
+Your password: prevaricate
+
+----------------
+
 Station Finders:
 http://onlineradiobox.com
 http://www.radio.net/
 https://www.internet-radio.com/stations/70s/
 https://www.radionomy.com/en/radio/classicrock109/index
 http://streema.com/radios/Classic_Deep_Cuts
+
+For iHeartRadio Streams:
+*Browse to your iHeartRadio station to listen
+*right click the page and select View page source
+*There are several key javascript variables (as of this writing) used to identify the station and its streams.
+*search (ctrl-f) for "streams"
+*The relevant text should be in a section of javascript in a variable "window.__store" (also near variable "BOOT"). The data is encoded using JSON. The "streams" area is a compound list of streams for the radio station as "streams":{"key":"value",...}. These key-value pairs list the stream type (key) and its stream (value).
+
+------------------
 
 Had to run "sudo raspi-config", then go to "Advanced", then "Enable SPI" to use pi4j gpio extensions, otherwise
 I was getting the following message:
@@ -69,5 +88,5 @@ sudo vi ssh (save empty file)
 -Install Packages-
 sudo apt-get update && sudo apt-get install oracle-java8-jdk
 
-For static wireless ip, I used the router instead, giving it the mac address of the pi, this was under "advanced" tab, choose "setup", then "lan setup"
+For html wireless ip, I used the router instead, giving it the mac address of the pi, this was under "advanced" tab, choose "setup", then "lan setup"
 Here's the ip I reserved and the mac address of the pi: 192.168.1.130	sump-monitor	B8:27:EB:C4:D0:66
