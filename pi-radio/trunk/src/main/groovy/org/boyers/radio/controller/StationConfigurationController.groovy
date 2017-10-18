@@ -6,7 +6,7 @@ import org.boyers.radio.config.StationConfigurationPersister
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ResponseBody
@@ -26,19 +26,18 @@ class StationConfigurationController {
     @Autowired
     StationConfigurationPersister stationConfigurationPersister
 
-    @RequestMapping(value = '', method = RequestMethod.GET)
-    String presentSectionConfigurationSection(Model model) {
-        model.addAttribute('stations', buildStationList())
-        'station-configuration'
+    @RequestMapping('/stations')
+    @ResponseBody
+    List<Station> getStations() {
+        buildStationList()
     }
 
     @RequestMapping(value = '', method = RequestMethod.POST)
     @ResponseBody
-    String saveStation(Station station) {
+    void saveStation(@RequestBody Station station) {
         replaceStationInList(station)
         stationConfigurationPersister.saveStations(stations)
         log.info('Saved station: {}', station)
-        'saved station'
     }
 
     /**
@@ -55,6 +54,7 @@ class StationConfigurationController {
                 stationList.add(new Station(dialPosition: it))
             }
         }
+        log.info('Station list:  {}', stationList)
         stationList
     }
 

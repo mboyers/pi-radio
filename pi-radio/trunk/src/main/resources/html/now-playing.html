@@ -1,0 +1,13 @@
+<div ng-controller="nowPlayingController">
+    <span ng-click="update()" class="pull-right glyphicon glyphicon-refresh"></span>
+    <table class="table">
+        <tr>
+            <td><h1 class="text-primary pull-right">Station:</h1></td>
+            <td><h1>{{nowPlaying.station}}</h1></td>
+        </tr>
+        <tr>
+            <td><h1 class="text-primary pull-right">Song:</h1></td>
+            <td><h1>{{nowPlaying.song}}</h1></td>
+        </tr>
+    </table>
+</div>

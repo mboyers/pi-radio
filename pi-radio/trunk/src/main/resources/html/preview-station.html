@@ -1,0 +1,17 @@
+<div class="row" ng-controller="previewStationController">
+    <div class="text-center">
+        <h4>To check out a station, paste the station's uri below and click the Play button.</h4>
+        <div class="form-group">
+            <div class="col-lg-1">
+                <label><h4>Station:</h4></label>
+            </div>
+            <div class="col-lg-10">
+                <input ng-model="previewStationUri" type="text" class="form-control" />
+            </div>
+            <div class="col-lg-1">
+                <button ng-click="previewStation(previewStationUri)" type="button" class="btn btn-primary">Play</button>
+            </div>
+        </div>
+    </div>
+</div>
+
