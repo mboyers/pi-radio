@@ -3,7 +3,7 @@
         <form>
             <div class="form-group">
                 <div class="col-lg-1">
-                    <h4>{{station.dialPosition}}</h4>
+                    <button ng-click="playStation(station)" type="submit" class="btn btn-primary">{{station.dialPosition}}</button>
                     <input type="hidden" ng-model="station.dialPosition" name="dialPosition"/>
                 </div>
                 <div class="col-lg-5">

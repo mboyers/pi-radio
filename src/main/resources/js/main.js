@@ -38,7 +38,7 @@ app.controller("previewStationController", function($scope, $http) {
     $scope.previewStation = function(stationUri) {
         $http({
             method : "POST",
-            url : "/testStation/play",
+            url : "/play/testStation",
             data: stationUri,
             contentType: 'text/plain'
         });
@@ -58,6 +58,15 @@ app.controller("stationConfigurationController", function($scope, $http) {
         $http({
             method : "POST",
             url : "/stationConfiguration",
+            data: station
+        });
+    }
+
+    $scope.playStation = function(station) {
+        console.log(station);
+        $http({
+            method : "POST",
+            url : "/play/station",
             data: station
         });
     }
