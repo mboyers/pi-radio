@@ -16,7 +16,7 @@ class WebMvcConfig extends WebMvcConfigurerAdapter {
 
         registry.addResourceHandler('/html/**').addResourceLocations('classpath:/html/')
         registry.addResourceHandler('/js/**').addResourceLocations('classpath:/js/')
-        registry.addResourceHandler('/favicon.ico').addResourceLocations('classpath:/images/favicon.ico')
+        registry.addResourceHandler('/favicon.png').addResourceLocations('classpath:/images/favicon.png')
     }
 
     @Override
