@@ -64,7 +64,7 @@ class Announcer implements Actor {
 
     private URL buildUrl(String textToSpeak) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl('http://api.voicerss.org/')
-        builder.queryParam('key', 'bb1c82a4f0e7441fb641baf16e9cf195')
+        builder.queryParam('key', 'c36b37466fd445bc8fe3a493137dddd1')
         builder.queryParam('hl', 'en-us')
         builder.queryParam('src', textToSpeak)
         builder.queryParam('c', 'wav')
