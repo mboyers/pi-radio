@@ -1,55 +1,36 @@
 buildscript {
-    ext {
-        springBootVersion = '1.5.3.RELEASE'
-    }
+    ext.kotlin_version = '1.3.31' // Required for Kotlin integration
+    ext.spring_boot_version = '2.1.0.RELEASE'
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Required for Kotlin integration
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // See https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
     }
 }
 
-apply plugin: 'groovy'
-apply plugin: 'codenarc'
-apply plugin: 'idea'
+apply plugin: 'kotlin' // Required for Kotlin integration
+apply plugin: "kotlin-spring" // https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+//jar {
+//    baseName = 'gs-rest-service'
+//    version = '0.1.0'
+//}
 
 repositories {
-    mavenCentral()
     jcenter()
 }
 
-configurations {
-    providedRuntime
-}
-
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter'
-    compile 'org.springframework:spring-web'
-    compile 'org.springframework:spring-webmvc'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-devtools'
-    compile 'com.fasterxml.jackson.core:jackson-databind'
-	compile 'org.codehaus.groovy:groovy'
-    compile 'org.codehaus.groovy:groovy-json'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "com.google.code.gson:gson:2.8.5"
     compile 'com.pi4j:pi4j-core:1.1'
     compile 'net.thejavashop:javampd:5.0.3'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'org.gmock:gmock:0.8.3'
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
-}
-
-bootRun {
-    systemProperties = [
-            'spring.profiles.active': System.getProperty('spring.profiles.active') ?: 'test'
-    ] + System.properties
-}
-
-springBoot {
-    executable = true
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }

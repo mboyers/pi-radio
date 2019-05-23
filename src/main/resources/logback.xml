@@ -1,0 +1,28 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss},%p,[%thread],%c,%L,%M %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/pi-radio.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>logs/pi-radio.%d{yyyy-MM}.log.zip</fileNamePattern>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss},%p,[%thread],%c,%L,%M %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="error">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.boyers" level="INFO"/>
+
+</configuration>
