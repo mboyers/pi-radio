@@ -10,9 +10,8 @@ import javax.sound.sampled.AudioInputStream
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
 
-class Announcer constructor(
-        private val player: Player,
-        private val executor: ThreadPoolExecutor): Actor{
+class Announcer constructor(private val player: Player,
+                            private val executor: ThreadPoolExecutor): Actor {
 
     private val log = LoggerFactory.getLogger(this.javaClass.name)
 
