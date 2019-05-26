@@ -31,7 +31,7 @@ class Announcer constructor(private val player: Player,
     private fun makeAnnouncement() {
         try {
             player.pause()
-            val url = buildUrl("${player.getNowPlayingStation()}. ${player.getNowPlayingSong()}")
+            val url = buildUrl("${player.getNowPlayingSong()}. ${player.getNowPlayingStation()}")
             val clip = AudioSystem.getClip()
             clip.open(getInputStream(url))
             clip.start()
