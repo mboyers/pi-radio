@@ -4,22 +4,19 @@ import org.boyers.radio.actor.Actor
 import org.slf4j.LoggerFactory
 
 class Potentiometer constructor(val channel: Int,
-                                val tolerance: Int,
+                                private val tolerance: Int,
                                 maxValue: Int,
-                                val ignoreFiringOnStartup: Boolean,
-                                val actor: Actor) {
+                                private val ignoreFiringOnStartup: Boolean,
+                                private val actor: Actor) {
 
     private val log = LoggerFactory.getLogger(this.javaClass.name)
+    private val erraticJumpDistance = 20
 
     private var rawValue = Integer.MAX_VALUE
-    private var adjustmentDivisor: Double
+    private var adjustmentDivisor: Double = 1024.0 / maxValue
     private var stabilized = false
     private var notChangedCount = 0
-
-    init {
-        adjustmentDivisor = 1024.0 / maxValue
-        log.info("Set adjustmentDivisor to {}", adjustmentDivisor)
-    }
+    private var erraticJumpIgnoreJustHappened = false
 
     private fun getAdjustedValue(): Int {
         return (rawValue / adjustmentDivisor).toInt()
@@ -44,6 +41,13 @@ class Potentiometer constructor(val channel: Int,
         }
 
         val difference = Math.abs(newValue - rawValue)
+
+        if (difference > erraticJumpDistance && !erraticJumpIgnoreJustHappened) {
+            log.debug("Ignoring new value of {} as it is greater than {} and considered erratic", newValue, erraticJumpDistance)
+            erraticJumpIgnoreJustHappened = true
+            return
+        }
+        erraticJumpIgnoreJustHappened = false
 
         if (difference > tolerance) {
             acceptNewValue(newValue)
