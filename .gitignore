@@ -1,3 +1,11 @@
+# IDE files
 .idea/
 *.iml
+
+# log files
 logs/
+
+# stuff related to building
+.gradle/
+build/
+out/
