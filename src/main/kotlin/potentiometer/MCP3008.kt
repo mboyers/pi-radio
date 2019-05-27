@@ -12,6 +12,15 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.lang.Exception
 
+/**
+ * This code was taken from the example here: http://www.lediouris.net/RaspberryPI/ADC/readme.html
+ * and converted to kotlin.
+ *
+ * There are higher-level abstractions provided by pi4j that I have tried to use without success.  An
+ * example is here: https://github.com/Pi4J/pi4j/blob/master/pi4j-example/src/main/java/MCP3008GpioExample.java
+ * It compiles and runs, but reads all zeroes.  Even after installed the pi4j libraries and examples separately
+ * to the pi via apt, and using their shell script to ensure the classpath is complete and correct.
+ */
 @Service
 @Profile("prod")
 class MCP3008 @Autowired constructor(val potentiometers: List<Potentiometer>){
@@ -27,7 +36,6 @@ class MCP3008 @Autowired constructor(val potentiometers: List<Potentiometer>){
     private val mosiOutput: GpioPinDigitalOutput
     private val clockOutput: GpioPinDigitalOutput
     private val chipSelectOutput: GpioPinDigitalOutput
-
 
     init {
         val gpio = GpioFactory.getInstance()
