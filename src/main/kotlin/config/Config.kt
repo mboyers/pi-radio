@@ -68,6 +68,6 @@ class Config @Autowired constructor(val player: Player){
     @Bean
     fun squelchPot() = Potentiometer(2, 20, 10, true, announcerActor())
 
-    @Bean
-    fun tunerPot() = Potentiometer(3, 10, 100, false, tunerActor())
+//    @Bean
+//    fun tunerPot() = Potentiometer(3, 30, 100, false, tunerActor())
 }

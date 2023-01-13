@@ -13,6 +13,24 @@ app.controller("nowPlayingController", function($scope, $http) {
     $scope.update();
 });
 
+// Choose Station
+app.controller("chooseStationController", function($scope, $http) {
+    
+    $http.get("/stationConfiguration/stations")
+        .then(function(response) {
+            $scope.stations = response.data;
+        });
+    
+    $scope.playStation = function(station) {
+        console.log(station);
+        $http({
+            method : "POST",
+            url : "/play/station",
+            data: station
+        });
+    }
+});
+
 // Calibrate
 app.controller("calibrateController", function($scope, $http) {
 

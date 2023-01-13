@@ -1,0 +1,15 @@
+<div class="text-center" ng-controller="chooseStationController">
+    <div ng-repeat="station in stations" class="row">
+        <form>
+            <div class="form-group">
+                <div class="col-xs-2">
+                    <button ng-click="playStation(station)" type="submit" class="btn btn-primary">{{station.dialPosition}}</button>
+                    <input type="hidden" ng-model="station.dialPosition" name="dialPosition"/>
+                </div>
+                <div class="col-xs-10">
+                    <input ng-model="station.name" name="name" type="text" class="form-control" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
