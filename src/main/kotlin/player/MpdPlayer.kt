@@ -15,8 +15,8 @@ class MpdPlayer: Player {
 
     private val log = LoggerFactory.getLogger(this.javaClass.name)
 
-    private val mpd: MPD
-    private val staticStation = Station("radio-static.mp3", ".....Static.....", 0)
+    private final val mpd: MPD
+    private final val staticStation = Station("radio-static.mp3", ".....Static.....", 0)
     private var nowPlayingStation = Station("", "", 0)
 
     init {
