@@ -29,7 +29,7 @@ class MpdPlayer: Player {
 
     override fun setVolume(newVolume: Int) {
         mpd.player.volume = newVolume
-        log.info("Set volume to {}", newVolume)
+        log.debug("Set volume to {}", newVolume)
     }
 
     override fun playStatic() {
