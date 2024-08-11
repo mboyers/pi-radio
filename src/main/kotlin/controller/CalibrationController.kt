@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/calibrate")
+@RequestMapping("/api/calibrate")
 class CalibrationController @Autowired constructor(
         val availableTunePoints: List<Int>,
         val tunePoints: MutableList<TunePoint>,
