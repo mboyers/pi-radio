@@ -28,7 +28,7 @@ class Volume constructor(private val player: Player,
 
         executor.execute(runnable)
         currentVolume = newVolume
-        log.info("Current volume: {}", currentVolume)
+        log.debug("Current volume: {}", currentVolume)
     }
 
     private fun performLogarithmicAdjustment(newVolume: Int): Int {

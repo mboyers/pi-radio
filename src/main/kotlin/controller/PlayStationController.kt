@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/play")
+@RequestMapping("/api/play")
 class PlayStationController @Autowired constructor(val player: Player){
 
     private val log = LoggerFactory.getLogger(this.javaClass.name)
