@@ -14,10 +14,6 @@ class Volume constructor(private val player: Player,
     override fun handleChange(newValue: Int) {
         val adjustedNewVolume = performLogarithmicAdjustment(newValue)
 
-        // Slide to the new volume so it doesn't sound too abrupt
-//        (currentVolume..adjustedNewVolume).forEach {
-//            setVolume(it)
-//        }
         setVolume(adjustedNewVolume)
     }
 
