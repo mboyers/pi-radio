@@ -61,6 +61,7 @@ class Announcer constructor(private val player: Player,
         val builder = UriComponentsBuilder.fromHttpUrl("http://api.voicerss.org/")
         builder.queryParam("key", "c36b37466fd445bc8fe3a493137dddd1")
         builder.queryParam("hl", "en-us")
+        builder.queryParam("v", "amy")
         builder.queryParam("src", textToSpeak)
         builder.queryParam("c", "wav")
         builder.queryParam("f", "16khz_16bit_mono")
