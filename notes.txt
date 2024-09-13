@@ -17,6 +17,9 @@ Your password: prevaricate
 
 ----------------
 
+BOSE Speaker - disable auto off:
+Hold down Aux and Volume+ simultaneously, it will announce when it recognizes it
+
 Station Finders:
 http://onlineradiobox.com
 http://www.radio.net/

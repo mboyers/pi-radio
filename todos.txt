@@ -1,8 +1,10 @@
 TODO:
 Look for kotlin codenarc
 The findStationAtTunePoint method exists in two files, is there a way to encapsulate the list stuff for each persisted object?
-Get rid of the table for now playing, try to use columns
 Consider sockets to push changes
+Make which pots are checked configurable - might need to disbale tuner?
+make voice configurable?
+move license key for voice to speech api to be outside of application
 
 DONE:
 Strip unwanted text from iHeartRadio station now playing

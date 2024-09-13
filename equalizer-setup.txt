@@ -96,7 +96,7 @@ audio_output {
 # Then restart mpd
 sudo systemctl restart mpd
 
-# You can manually play/stop mpd to see if it's working.  You may see an error message in the output if it's now
+# You can manually play/stop mpd to see if it's working.  You may see an error message in the output if it's not
 mpc play
 mpc stop
 

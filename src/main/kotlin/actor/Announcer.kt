@@ -2,6 +2,7 @@ package org.boyers.radio.actor
 
 import org.boyers.radio.player.Player
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.util.UriComponentsBuilder
 import java.io.BufferedInputStream
 import java.net.URL
@@ -14,6 +15,9 @@ class Announcer constructor(private val player: Player,
                             private val executor: ThreadPoolExecutor): Actor {
 
     private val log = LoggerFactory.getLogger(this.javaClass.name)
+
+    @Value("\${voicerss.key}")
+    private final val voiceRssKey: String? = null
 
     override fun handleChange(newValue: Int) {
         val runnable =  {
@@ -59,7 +63,7 @@ class Announcer constructor(private val player: Player,
 
     private fun buildUrl(textToSpeak: String): URL {
         val builder = UriComponentsBuilder.fromHttpUrl("http://api.voicerss.org/")
-        builder.queryParam("key", "c36b37466fd445bc8fe3a493137dddd1")
+        builder.queryParam("key", voiceRssKey)
         builder.queryParam("hl", "en-us")
         builder.queryParam("v", "amy")
         builder.queryParam("src", textToSpeak)
