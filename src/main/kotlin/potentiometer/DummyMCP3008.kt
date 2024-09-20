@@ -18,8 +18,8 @@ class DummyMCP3008 @Autowired constructor(val potentiometers: List<Potentiometer
     fun run() {
         log.trace("Dummy MPC fired")
         for (potentiometer in potentiometers) {
-//            log.trace("Dummy potentiometer triggering potentiometer {}", potentiometer)
-//            potentiometer.update(incrementor++)
+            log.trace("Dummy potentiometer triggering potentiometer {}", potentiometer)
+            potentiometer.update(incrementor++)
             if (incrementor > 1024) {
                 incrementor = 0
             }
