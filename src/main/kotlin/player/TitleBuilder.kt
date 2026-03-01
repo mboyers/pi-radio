@@ -19,7 +19,7 @@ class TitleBuilder {
             sb.append(mpdSong.title)
         }
 
-        log.info("Built title {}", sb.toString())
+        log.debug("Built title {}", sb.toString())
 
         return sb.toString()
     }
