@@ -24,6 +24,8 @@ class Potentiometer constructor(val channel: Int,
 
     fun update(newValue: Int) {
 
+        log.trace("update called for channel {} and value {}", channel, newValue)
+
         // If it's not in the range of what is valid, ignore it
         if (!isInValidRange(newValue)) {
             log.warn("Ignoring invalid potentiometer value: {}", newValue)
@@ -42,8 +44,10 @@ class Potentiometer constructor(val channel: Int,
 
         val difference = Math.abs(newValue - rawValue)
 
+        log.trace("Difference between {} and {} is {}", newValue, rawValue, difference)
+
         if (difference > erraticJumpDistance && !erraticJumpIgnoreJustHappened) {
-            log.debug("Ignoring new value of {} as it is greater than {} and considered erratic", newValue, erraticJumpDistance)
+            log.debug("Ignoring new value of {} for channel {} as it is greater than {} and considered erratic", newValue, channel, erraticJumpDistance)
             erraticJumpIgnoreJustHappened = true
             return
         }
