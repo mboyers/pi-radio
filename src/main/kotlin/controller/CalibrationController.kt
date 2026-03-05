@@ -1,5 +1,6 @@
 package org.boyers.radio.controller
 
+import org.boyers.radio.actor.Tuner
 import org.boyers.radio.model.TunePoint
 import org.boyers.radio.persist.CalibrationPersister
 import org.slf4j.LoggerFactory
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*
 class CalibrationController @Autowired constructor(
         val availableTunePoints: List<Int>,
         val tunePoints: MutableList<TunePoint>,
+        val tuner: Tuner,
         val calibrationPersister: CalibrationPersister) {
 
     private val log = LoggerFactory.getLogger(this.javaClass.name)
@@ -22,7 +24,8 @@ class CalibrationController @Autowired constructor(
 
     @PutMapping("/tunePoint/{displayPosition}")
     fun saveTunePoint(@PathVariable displayPosition: Int) {
-        val tunePoint = TunePoint(displayPosition, 99999)
+        log.info("Saving tune point for display position: {} and tuner position {}", displayPosition, tuner.getCurrentValue())
+        val tunePoint = TunePoint(displayPosition, tuner.getCurrentValue())
         addOrReplaceTunePointInList(tunePoint)
         calibrationPersister.saveTunePoints(tunePoints)
         log.info("New tune point list is: {}", tunePoints)

@@ -12,8 +12,16 @@ class Tuner constructor(private val player: Player,
                         private val stations: List<Station>): Actor {
 
     private val log = LoggerFactory.getLogger(this.javaClass.name)
+
+    private var currentValue = 99999
+
+    fun getCurrentValue(): Int {
+        return currentValue
+    }
     
     override fun handleChange(newValue: Int) {
+        currentValue = newValue
+        log.info("handling tuning change for value: {}", newValue)
         val  tunerChanger = {
             val station = tryToFindStation(newValue)
             if (station != null) {
