@@ -47,7 +47,7 @@ class MCP3008 @Autowired constructor(val potentiometers: List<Potentiometer>){
         log.info("MCP3008 initialized.  Found {} potentiometers", potentiometers.size)
     }
 
-    @Scheduled(fixedRate = 100L)
+    @Scheduled(fixedRate = 30L)
     fun readPotentiometers() {
         for (potentiometer in potentiometers) {
             try {
